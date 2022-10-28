@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Sofia", sans-serif;
+    background-color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+    color: rgb(3, 0, 189);
+    height: 60px;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "Sofia", sans-serif;
+  }
+
+.btnHeader {
+    border-radius: 10px;
+    font-size: 30px;
+    background-color: white;
+    text-decoration: none;
+    border: 0;
+    outline: 0;
+    color: rgb(3, 0, 189);
+    font-family: "Sofia", sans-serif;
+}
+
+.btnHeader:hover {
+    background-color:rgb(13, 175, 224);
+}
