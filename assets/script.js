@@ -1,4 +1,3 @@
-var quizStatus = true;
 var quizEnded = false;
 var timer;
 var timeLeft = 0;
@@ -53,13 +52,16 @@ var answersObject = {
 };
 
 document.addEventListener("keydown", function(event) {
-    startQuiz.style.display = "none";
-    finalScoreDisplay.style.display = "none";
-    enterInitials.style.display = "none";
-    score = 50;
-    setQuestions();
-    setButtons ();
-    finishedQuiz();
+    var keyPress = event.key;
+    if (keyPress == "Q") {
+        startQuiz.style.display = "none";
+        finalScoreDisplay.style.display = "none";
+        enterInitials.style.display = "none";
+        score = 50;
+        setQuestions();
+        setButtons ();
+        finishedQuiz();
+    }
   });
 
 cleanStyle();
@@ -69,7 +71,6 @@ timeRemaining.textContent = timeLeft;
 viewHighscores.addEventListener("click", function() {
     var quizUsers = "";
     var substringTest = "";
-    var highScores = "";
 
     for (var i = 0; i < localStorage.length; i++) {
         var checkUserValue = [];
@@ -78,10 +79,10 @@ viewHighscores.addEventListener("click", function() {
         if (substringTest == "quiz") {
             checkUserValue = quizUsers.split(",");
             var userName = checkUserValue[0];
-            highScores += "User " + userName.substring(4) + " high score is: " + checkUserValue[1] + "\n";
+            highScore += "User " + userName.substring(4) + " high score is: " + checkUserValue[1] + "\n";
        }
     }
-    window.alert(highScores);
+    window.alert(highScore);
 });
 
 submitScore.addEventListener("click", function() {
@@ -91,6 +92,7 @@ submitScore.addEventListener("click", function() {
     var value = [quizUserDetails, score]
 
     if (!localStorage.length) {
+        console.log("First IF Statement Entered");
         localStorage.setItem("test","test");
     }
         
@@ -100,34 +102,40 @@ submitScore.addEventListener("click", function() {
         quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
         checkUser = localStorage.getItem(quizUserDetails);
    
-        if (checkUser == null) {
+        if (checkUser == null) {//If user does not exist
+            console.log("Second IF Statement Entered");
             localStorage.setItem(quizUserDetails, value);
             window.alert("Your score of " + score + " has been submitted!");
             break;
         }
         
-        else if (checkUser != null){
+        else if (checkUser != null){//If user exists
+            console.log("Third IF Statement Entered");
             checkUserValue = checkUser.split(",");
         } 
 
-        if ( quizUserDetails == checkUserValue[0] && score == checkUserValue[1] ) {
-        localStorage.setItem(quizUserDetails, value);
-        window.alert(score + " " + "is the latest entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.");
-        break; 
+        if ( quizUserDetails == checkUserValue[0] && score <= checkUserValue[1] ) {
+            console.log("Fourth IF Statement Entered");
+            localStorage.setItem(quizUserDetails, value);
+            window.alert("Your recent score of " + score + " is less than a previous entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.");
+            break; 
         }
         
         else if (enterInitialsTextArea.value == "") {
+            console.log("Fifth IF Statement Entered");
             window.alert("Please enter an initial");
             break;
         }
         
         else if (quizUserDetails == checkUserValue[0] && score > checkUserValue[1]) {
+            console.log("Sixth IF Statement Entered");
             localStorage.setItem(quizUserDetails, value);
             window.alert("New high score of " + score + " has been submitted!.\nYour previous score was " + checkUserValue[1]);
             break; 
         }
         
         else if (quizUserDetails == checkUserValue[0] && score < checkUserValue[1]) {
+            console.log("Seventh IF Statement Entered");
             localStorage.setItem(quizUserDetails, value);
             window.alert("Your previous code of " + checkUserValue[1] + " was higher. Entry will not be added.");
             break; 
@@ -135,6 +143,7 @@ submitScore.addEventListener("click", function() {
         }
         
         else {
+            console.log("Eigth IF Statement Entered");
             localStorage.setItem(quizUserDetails, value);
             window.alert("Your score of " + score + " has been submitted!")
             break;
