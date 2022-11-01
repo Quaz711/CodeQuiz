@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Sofia", sans-serif;
-    background-color: white;
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -21,7 +16,32 @@ header {
     padding-left: 10px;
     padding-right: 10px;
     font-family: "Sofia", sans-serif;
-  }
+}
+
+body {
+    font-family: "Sofia", sans-serif;
+    background-color: white;
+}
+
+main {
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: "Sofia", sans-serif;
+}
+
+.btn {
+    border-radius: 12px;
+    border: 0;
+    outline: 0;
+    background-color: rgb(3, 0, 189);
+    color: white;
+    font-family: "Sofia", sans-serif;
+}
 
 .btnHeader {
     border-radius: 10px;
@@ -34,6 +54,245 @@ header {
     font-family: "Sofia", sans-serif;
 }
 
+#grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 2fr 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    gap: 10px 10px;
+    font-family: "Sofia", sans-serif;
+}
+
+#labelDisplay1 {
+    text-align: center;
+    align-self: baseline;
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 5;
+    place-self: center;
+    font-size: 50px;
+}
+
+#labelDisplay2 {
+    text-align: center;
+    align-self: baseline;
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 12;
+    place-self: center;
+    font-size: 30px;
+}
+
+#questionsDisplay {
+    text-align: center;
+    align-self: baseline;
+    grid-column: 1 / span 8;
+    grid-row: 1 / span 6;
+    place-self: center;
+    font-size: 30px;
+}
+
+#finalScoreDisplay {
+    grid-column: 1 / span 2;
+    grid-row: 6 / span 1;
+    font-size: 20px;
+}
+
+#enterInitials {
+    grid-column: 1 / span 1;
+    grid-row: 7 / span 1;
+    font-size: 20px;
+}
+
+#enterInitialsTextArea {
+    grid-row: 7 / span 1;
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    margin-left: 0px;
+    resize: none;
+}
+
+#submitScore {
+    grid-column: 3 / span 1;
+    grid-row: 7 / span 1;
+    padding: 5px 20px;
+    border-radius: 16px;
+    height: 40px;
+    width: 150px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(3, 0, 189);
+    color: white;
+    font-family: "Sofia", sans-serif;
+}
+
+#startQuiz {
+    grid-column: 2 / span 2;
+    grid-row: 8 / span 1;
+    padding: 10px 20px;
+    border-radius: 16px;
+    border: none;
+    font-size: 25px;
+    background-color: rgb(3, 0, 189);
+    place-self: center;
+    color: white;
+    font-family: "Sofia", sans-serif;
+}
+
+#answer1 {
+    grid-column: 1 / span 2;
+    grid-row: 6 / span 1;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(3, 0, 189);
+    color: white;
+    font-family: "Sofia", sans-serif;
+    margin-left: 25px;
+}
+
+#answer2 {
+    grid-column: 1 / span 2;
+    grid-row: 7 / span 1;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(3, 0, 189);
+    color: white;
+    font-family: "Sofia", sans-serif;
+    margin-left: 25px;
+}
+
+#answer3{
+    grid-column: 1 / span 2;
+    grid-row: 8 / span 1;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(3, 0, 189);
+    color: white;
+    font-family: "Sofia", sans-serif;
+    margin-left: 25px;
+}
+
+#answer4 {
+    grid-column: 1 / span 2;
+    grid-row: 9 / span 1;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(3, 0, 189);
+    color: white;
+    font-family: "Sofia", sans-serif;
+    margin-left: 25px;
+}
+
 .btnHeader:hover {
     background-color:rgb(13, 175, 224);
 }
+
+#startQuiz:hover {
+    background-color: rgb(13, 175, 224);
+}
+
+#answer1:hover {
+    background-color: rgb(13, 175, 224);
+}
+
+#answer2:hover {
+    background-color: rgb(13, 175, 224);
+}
+
+#answer3:hover {
+    background-color: rgb(13, 175, 224);
+}
+
+#answer4:hover {
+    background-color: rgb(13, 175, 224);
+}
+
+#submitScore:hover {
+    background-color: rgb(13, 175, 224);
+}
+
+#correctORwrong {
+    text-align: left;
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 2;
+    font-size: 20px;
+}
+
+#correctORwrongGrid {
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px 10px;
+    font-family: "Sofia", sans-serif;
+}
+
+@media screen and (max-width: 1183px) {
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 50px;
+        font-family: "Sofia", sans-serif;
+    }
+    
+    #labelDisplay1 {
+        grid-column: 2 / span 2;
+        grid-row: 1 / span 5;
+        font-size: 40px;
+    }
+
+    #labelDisplay2 {
+        grid-column: 1 / span 4;
+        grid-row: 1 / span 11;
+        font-size: 20px;
+    }
+    
+    #answer1 {
+        grid-column: 2 / span 2;
+        font-size: 15px;
+    }
+    
+    #answer2 {
+        grid-column: 2 / span 2;
+        font-size: 15px;
+    }
+    
+    #answer3 {
+        grid-column: 2 / span 2;
+        font-size: 15px;
+    }
+    
+    #answer4 {
+        grid-column: 2 / span 2;
+        font-size: 15px;
+    }
+}
+
+@media screen and  (max-width: 504px) {
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+
+    #labelDisplay1 {
+        grid-column: 2 / span 2;
+        grid-row: 1 / span 5;
+        font-size: 40px;
+    }
+
+    #labelDisplay2 {
+        grid-column: 1 / span 4;
+        grid-row: 1 / span 11;
+        font-size: 20px;
+    }
+  }

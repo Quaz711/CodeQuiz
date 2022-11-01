@@ -8,22 +8,37 @@
     <link rel="stylesheet" href="./assets/style.css">
     <title>Code Quiz</title>
 </head>
-
 <body>
     <header>
         <div>
             <button class="btnHeader" id="viewHighscores">View high scores</button>
         </div>
         <div>
-            <p>Time Remaining: <span id="timeLeft">xxx</span></p>
+            <p>Time Remaining: <span id="timeRemaining">xxx</span></p>
         </div>
     </header>
 
-        <div id="mainDiv">
-            <div id="gridContainer"></div>
+    <main>
+        <div id="grid">
+            <p id="labelDisplay1">Coding Quiz Challenge</p>
+            <p id="labelDisplay2">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <p id="questionsDisplay"></p>
+            <p id="finalScoreDisplay"></p>
+            <p id="enterInitials"></p>
+            <textarea id=enterInitialsTextArea></textarea>
+            <button class="btn" id="startQuiz">Start Quiz</button>
+            <button class="btn" id="answer1"></button>
+            <button class="btn" id="answer2"></button>
+            <button class="btn" id="answer3"></button>
+            <button class="btn" id="answer4"></button>
+            <button class="btn" id="submitScore"></button>
         </div>
-        
+
+        <div id="correctORwrongGrid">
+            <p id=correctORwrong></p>
+        </div>
+    </main>
+    
     <script src="./assets/script.js"></script>
 </body>
-
 </html>
