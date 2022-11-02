@@ -63,8 +63,8 @@ document.addEventListener("keydown", function(event) {
         setQuestions();
         setButtons ();
         //finishedQuiz();
-        //showScores();
-        errorChecking();
+        showScores();
+        //errorChecking();
     }
   });
 
@@ -98,72 +98,82 @@ goBack.addEventListener("click", function() {
 });
 
 submitScore.addEventListener("click", function() {
-    var quizLocalStorage = "quiz";
-    var quizUserDetails = "";
-    quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
-    var value = [quizUserDetails, score]
-
-    if (!localStorage.length) {
-        console.log("First IF Statement Entered");
-        localStorage.setItem("test","test");
-    }
-        var counter = 0;
-    for (var i = 0; i < localStorage.length; i++){
-        console.log("Entered for loop: " + counter++);
-        var checkUser = "";
-        var userOldScore = [];
+    errorChecking();
+    if (!errorDetected) {
+        console.log("Error not detected");
+        var quizLocalStorage = "quiz";
+        var quizUserDetails = "";
         quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
-        checkUser = localStorage.getItem(quizUserDetails);
-   
-        if (checkUser == null) {//If user does not exist
-            console.log("User does not exist");
-            localStorage.setItem(quizUserDetails, value);
-            window.alert("Your score of " + score + " has been submitted!");
-            break;
-        }
-        
-        else if (checkUser != null){//If user exists
-            console.log("User exists");
-            userOldScore = checkUser.split(",");
-        } 
+        var value = [quizUserDetails, score]
 
-        if ( quizUserDetails == userOldScore[0] && score <= userOldScore[1] ) {
-            console.log("Score is lower than previous score for same user");
-            localStorage.setItem(quizUserDetails, value);
-            window.alert("Your recent score of " + score + " is less than a previous entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.");
-            break; 
+        if (!localStorage.length) {
+            console.log("First IF Statement Entered");
+            localStorage.setItem("test","test");
         }
-        
-        else if (enterInitialsTextArea.value == "") {
-            console.log("Empty entry");
-            window.alert("Please enter initials");
-            break;
-        }
-        
-        else if (quizUserDetails == userOldScore[0] && score > userOldScore[1]) {
-            console.log("Sixth IF Statement Entered");
-            localStorage.setItem(quizUserDetails, value);
-            window.alert("New high score of " + score + " has been submitted!.\nYour previous score was " + userOldScore[1]);
-            break; 
-        }
-        
-        else if (quizUserDetails == userOldScore[0] && score < userOldScore[1]) {
-            console.log("Seventh IF Statement Entered");
-            localStorage.setItem(quizUserDetails, value);
-            window.alert("Your previous code of " + userOldScore[1] + " was higher. Entry will not be added.");
-            break; 
+            var counter = 0;
+        for (var i = 0; i < localStorage.length; i++){
+            console.log("Entered for loop: " + counter++);
+            var checkUser = "";
+            var userOldScore = [];
+            quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
+            checkUser = localStorage.getItem(quizUserDetails);
+    
+            if (checkUser == null) {//If user does not exist
+                console.log("User does not exist");
+                localStorage.setItem(quizUserDetails, value);
+                window.alert("Your score of " + score + " has been submitted!");
+                break;
+            }
+            
+            else if (checkUser != null){//If user exists
+                console.log("User exists");
+                userOldScore = checkUser.split(",");
+            } 
 
+            if ( quizUserDetails == userOldScore[0] && score <= userOldScore[1] ) {
+                console.log("Score is lower than previous score for same user");
+                localStorage.setItem(quizUserDetails, value);
+                window.alert("Your recent score of " + score + " is less than a previous entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.");
+                break; 
+            }
+            
+            else if (enterInitialsTextArea.value == "") {
+                console.log("Empty entry");
+                window.alert("Please enter initials");
+                break;
+            }
+            
+            else if (quizUserDetails == userOldScore[0] && score > userOldScore[1]) {
+                console.log("Sixth IF Statement Entered");
+                localStorage.setItem(quizUserDetails, value);
+                window.alert("New high score of " + score + " has been submitted!.\nYour previous score was " + userOldScore[1]);
+                break; 
+            }
+            
+            else if (quizUserDetails == userOldScore[0] && score < userOldScore[1]) {
+                console.log("Seventh IF Statement Entered");
+                localStorage.setItem(quizUserDetails, value);
+                window.alert("Your previous code of " + userOldScore[1] + " was higher. Entry will not be added.");
+                break; 
+
+            }
+            
+            else {
+                console.log("Eigth IF Statement Entered");
+                localStorage.setItem(quizUserDetails, value);
+                window.alert("Your score of " + score + " has been submitted!")
+                break;
+            }
         }
-        
-        else {
-            console.log("Eigth IF Statement Entered");
-            localStorage.setItem(quizUserDetails, value);
-            window.alert("Your score of " + score + " has been submitted!")
-            break;
-        }
+
+        showScores();
     }
 
-    showScores();
+    else {
+        console.log("Error detected");
+        window.alert("Invalid entry. Try again");
+        enterInitialsTextArea.value = "";
+    }
 });
 
 submitScore.addEventListener("mouseover", function() {
@@ -187,33 +197,27 @@ answer4.addEventListener("mouseover", function() {
 });
 
 function errorChecking (){
+    errorDetected = false;
     function containsSpecialChars(str) {
         const specialChars = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         return specialChars.test(str);
     }
 
-    function containsnumbers(str) {
+    function containsNumbers(str) {
         const numberCheck = /[0-9]/;
         return numberCheck.test(str);
-    }
-      var apple = "12dfgdfg";
-      var pear = "sdfsdfg";
-      var pineapple = "##@$dfgd";
-      var peach = "#$%$%^";
-      var kiwi = "456456";
-     
+    }     
       console.log("First Test");
-      console.log(containsSpecialChars(apple));
-      console.log(containsSpecialChars(pear));
-      console.log(containsSpecialChars(pineapple));
-      console.log(containsSpecialChars(peach));
-      console.log(containsSpecialChars(kiwi));
+      console.log(containsSpecialChars(enterInitialsTextArea.value));
       console.log("Second Test");
-      console.log(containsnumbers(apple));
-      console.log(containsnumbers(pear));
-      console.log(containsnumbers(pineapple));
-      console.log(containsnumbers(peach));
-      console.log(containsnumbers(kiwi));
+      console.log(containsNumbers(enterInitialsTextArea.value));
+      if (containsSpecialChars(enterInitialsTextArea.value)) {
+        errorDetected = true;
+      }
+
+      if (containsNumbers(enterInitialsTextArea.value)) {
+        errorDetected = true;
+      }
 }
 
 function showScores () {
