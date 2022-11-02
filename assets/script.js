@@ -10,6 +10,7 @@ var theAnswer2 = "parenthesis";
 var theAnswer3 = "all of the above";
 var theAnswer4 = "curly brackets";
 var theAnswer5 = "for loops";
+var repoList = document.querySelector('ul');
 
 var questionsObject = {
     questions: { 
@@ -58,9 +59,12 @@ document.addEventListener("keydown", function(event) {
         finalScoreDisplay.style.display = "none";
         enterInitials.style.display = "none";
         score = 50;
+        clearInterval(timer);
         setQuestions();
         setButtons ();
-        finishedQuiz();
+        //finishedQuiz();
+        //showScores();
+        errorChecking();
     }
   });
 
@@ -73,16 +77,24 @@ viewHighscores.addEventListener("click", function() {
     var substringTest = "";
 
     for (var i = 0; i < localStorage.length; i++) {
-        var checkUserValue = [];
+        var userOldScore = [];
         quizUsers = localStorage.getItem(localStorage.key(i));
         substringTest = quizUsers.substring(0, 4);
         if (substringTest == "quiz") {
-            checkUserValue = quizUsers.split(",");
-            var userName = checkUserValue[0];
-            highScore += "User " + userName.substring(4) + " high score is: " + checkUserValue[1] + "\n";
+            userOldScore = quizUsers.split(",");
+            var userName = userOldScore[0];
+            highScore += "User " + userName.substring(4) + " high score is: " + userOldScore[1] + "\n";
        }
     }
     window.alert(highScore);
+});
+
+clearHighscores.addEventListener("click", function() {
+    localStorage.clear();
+});
+
+goBack.addEventListener("click", function() {
+    window.location.reload();
 });
 
 submitScore.addEventListener("click", function() {
@@ -95,49 +107,50 @@ submitScore.addEventListener("click", function() {
         console.log("First IF Statement Entered");
         localStorage.setItem("test","test");
     }
-        
+        var counter = 0;
     for (var i = 0; i < localStorage.length; i++){
+        console.log("Entered for loop: " + counter++);
         var checkUser = "";
-        var checkUserValue = [];
+        var userOldScore = [];
         quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
         checkUser = localStorage.getItem(quizUserDetails);
    
         if (checkUser == null) {//If user does not exist
-            console.log("Second IF Statement Entered");
+            console.log("User does not exist");
             localStorage.setItem(quizUserDetails, value);
             window.alert("Your score of " + score + " has been submitted!");
             break;
         }
         
         else if (checkUser != null){//If user exists
-            console.log("Third IF Statement Entered");
-            checkUserValue = checkUser.split(",");
+            console.log("User exists");
+            userOldScore = checkUser.split(",");
         } 
 
-        if ( quizUserDetails == checkUserValue[0] && score <= checkUserValue[1] ) {
-            console.log("Fourth IF Statement Entered");
+        if ( quizUserDetails == userOldScore[0] && score <= userOldScore[1] ) {
+            console.log("Score is lower than previous score for same user");
             localStorage.setItem(quizUserDetails, value);
             window.alert("Your recent score of " + score + " is less than a previous entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.");
             break; 
         }
         
         else if (enterInitialsTextArea.value == "") {
-            console.log("Fifth IF Statement Entered");
-            window.alert("Please enter an initial");
+            console.log("Empty entry");
+            window.alert("Please enter initials");
             break;
         }
         
-        else if (quizUserDetails == checkUserValue[0] && score > checkUserValue[1]) {
+        else if (quizUserDetails == userOldScore[0] && score > userOldScore[1]) {
             console.log("Sixth IF Statement Entered");
             localStorage.setItem(quizUserDetails, value);
-            window.alert("New high score of " + score + " has been submitted!.\nYour previous score was " + checkUserValue[1]);
+            window.alert("New high score of " + score + " has been submitted!.\nYour previous score was " + userOldScore[1]);
             break; 
         }
         
-        else if (quizUserDetails == checkUserValue[0] && score < checkUserValue[1]) {
+        else if (quizUserDetails == userOldScore[0] && score < userOldScore[1]) {
             console.log("Seventh IF Statement Entered");
             localStorage.setItem(quizUserDetails, value);
-            window.alert("Your previous code of " + checkUserValue[1] + " was higher. Entry will not be added.");
+            window.alert("Your previous code of " + userOldScore[1] + " was higher. Entry will not be added.");
             break; 
 
         }
@@ -148,7 +161,9 @@ submitScore.addEventListener("click", function() {
             window.alert("Your score of " + score + " has been submitted!")
             break;
         }
-    } 
+    }
+
+    showScores();
 });
 
 submitScore.addEventListener("mouseover", function() {
@@ -170,6 +185,63 @@ answer3.addEventListener("mouseover", function() {
 answer4.addEventListener("mouseover", function() {
     correctORwrong.style.display = "none";
 });
+
+function errorChecking (){
+    function containsSpecialChars(str) {
+        const specialChars = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        return specialChars.test(str);
+    }
+
+    function containsnumbers(str) {
+        const numberCheck = /[0-9]/;
+        return numberCheck.test(str);
+    }
+      var apple = "12dfgdfg";
+      var pear = "sdfsdfg";
+      var pineapple = "##@$dfgd";
+      var peach = "#$%$%^";
+      var kiwi = "456456";
+     
+      console.log("First Test");
+      console.log(containsSpecialChars(apple));
+      console.log(containsSpecialChars(pear));
+      console.log(containsSpecialChars(pineapple));
+      console.log(containsSpecialChars(peach));
+      console.log(containsSpecialChars(kiwi));
+      console.log("Second Test");
+      console.log(containsnumbers(apple));
+      console.log(containsnumbers(pear));
+      console.log(containsnumbers(pineapple));
+      console.log(containsnumbers(peach));
+      console.log(containsnumbers(kiwi));
+}
+
+function showScores () {
+    cleanStyle();
+    document.getElementById("questionsDisplay").style.gridRow = 2;
+    document.getElementById("questionsDisplay").style.placeSelf = "start";
+    document.getElementById("questionsDisplay").style.fontSize = "xx-large";
+    questionsDisplay.textContent = "High scores";
+    goBack.style.display = "";
+    clearHighscores.style.display = "";
+    goBack.textContent = "Go back";
+    clearHighscores.textContent = "Clear high scores";
+
+    for (var i = 0; i < localStorage.length; i++) {
+        var userOldScore = [];
+        quizUsers = localStorage.getItem(localStorage.key(i));
+        substringTest = quizUsers.substring(0, 4);
+        if (substringTest == "quiz") {
+            console.log("Entered If Statement");
+            userOldScore = quizUsers.split(",");
+            var userName = userOldScore[0];
+            highScore += (i + 1) + ". " + userName.substring(4) + " - " + userOldScore[1];
+            var listItem = document.createElement('li');
+            listItem.textContent = highScore;
+            repoList.appendChild(listItem);
+        }
+    }
+}
 
 function answeredCorrect () {
     correctORwrong.style.display = "";
@@ -224,6 +296,8 @@ function cleanStyle() {
     answer3.style.display = "none";
     answer4.style.display = "none";
     submitScore.style.display = "none";
+    clearHighscores.style.display = "none";
+    goBack.style.display = "none";
     correctORwrong.style.display = "none";
     enterInitialsTextArea.style.display = "none";
 }
@@ -265,7 +339,6 @@ function startTimer() {
 
 
 function finishedQuiz () {
-    console.log("Quiz is finished!");
     cleanStyle();
     document.getElementById("questionsDisplay").style.gridRow = 4;
     document.getElementById("questionsDisplay").style.placeSelf = "start";
@@ -278,7 +351,6 @@ function finishedQuiz () {
     enterInitials.textContent = "Enter initials: ";
     submitScore.style.display = "";
     submitScore.textContent = "Submit";
-    //clearInterval(timeInterval);
 }
 
 answer1.addEventListener("click", function() {
