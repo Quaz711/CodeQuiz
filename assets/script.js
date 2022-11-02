@@ -1,17 +1,20 @@
+var createList = document.querySelector('ul');
 var quizEnded = false;
-var timer;
+var errorDetected = false;
+var quizUser;
+var userScore;
 var timeLeft = 0;
 var questionNumber = 0;
 var answerNumber = 0;
 var score = 0;
+var timer;
 var highScore;
+var highScoresDisplay = "";
 var theAnswer1 = "alerts";
 var theAnswer2 = "parenthesis";
 var theAnswer3 = "all of the above";
 var theAnswer4 = "curly brackets";
 var theAnswer5 = "for loops";
-var repoList = document.querySelector('ul');
-
 var questionsObject = {
     questions: { 
         0 : "Commonly used data types DO Not Include:",
@@ -21,7 +24,6 @@ var questionsObject = {
         4 : "A very useful tool used during development and debugging for printing content to the debugger is:"
     }
 };
-
 var answersObject = {
     answers: { 
         0 : {
@@ -52,6 +54,9 @@ var answersObject = {
     }
 };
 
+cleanStyle();
+timeRemaining.textContent = timeLeft;
+/*
 document.addEventListener("keydown", function(event) {
     var keyPress = event.key;
     if (keyPress == "Q") {
@@ -63,116 +68,78 @@ document.addEventListener("keydown", function(event) {
         setQuestions();
         setButtons ();
         //finishedQuiz();
-        showScores();
+        //showScores();
         //errorChecking();
     }
-  });
-
-cleanStyle();
-
-timeRemaining.textContent = timeLeft;
-
+});
+*/
 viewHighscores.addEventListener("click", function() {
-    var quizUsers = "";
-    var substringTest = "";
-
-    for (var i = 0; i < localStorage.length; i++) {
-        var userOldScore = [];
-        quizUsers = localStorage.getItem(localStorage.key(i));
-        substringTest = quizUsers.substring(0, 4);
-        if (substringTest == "quiz") {
-            userOldScore = quizUsers.split(",");
-            var userName = userOldScore[0];
-            highScore += "User " + userName.substring(4) + " high score is: " + userOldScore[1] + "\n";
-       }
+    highScoresDisplay = "";
+    if (localStorage.length == 0) {
+        window.alert("There are no users or scores to display");
     }
-    window.alert(highScore);
+
+    else {
+        for (var i = 0; i < localStorage.length; i++) {
+            quizUser = localStorage.key(i);
+            userScore = localStorage.getItem(quizUser);
+            highScoresDisplay += (i + 1) + ". " + quizUser + " - " + userScore + "\n";
+        }
+    }
+
+    window.alert(highScoresDisplay);
 });
 
 clearHighscores.addEventListener("click", function() {
     localStorage.clear();
+    var ul = document.querySelector('.highScores');
+    var listLength = ul.children.length;
+    for (i = 0; i < listLength; i++) {
+        ul.removeChild(ul.children[0]);
+    }
 });
 
 goBack.addEventListener("click", function() {
+    var ul = document.querySelector('.highScores');
+    var listLength = ul.children.length;
+    for (i = 0; i < listLength; i++) {
+        ul.removeChild(ul.children[0]);
+    }
+
     window.location.reload();
 });
 
 submitScore.addEventListener("click", function() {
     errorChecking();
     if (!errorDetected) {
-        console.log("Error not detected");
-        var quizLocalStorage = "quiz";
-        var quizUserDetails = "";
-        quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
-        var value = [quizUserDetails, score]
+        for (var i = 0; i < localStorage.length; i++) {
 
-        if (!localStorage.length) {
-            console.log("First IF Statement Entered");
-            localStorage.setItem("test","test");
-        }
-            var counter = 0;
-        for (var i = 0; i < localStorage.length; i++){
-            console.log("Entered for loop: " + counter++);
-            var checkUser = "";
-            var userOldScore = [];
-            quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
-            checkUser = localStorage.getItem(quizUserDetails);
-    
-            if (checkUser == null) {//If user does not exist
-                console.log("User does not exist");
-                localStorage.setItem(quizUserDetails, value);
-                window.alert("Your score of " + score + " has been submitted!");
-                break;
-            }
-            
-            else if (checkUser != null){//If user exists
-                console.log("User exists");
-                userOldScore = checkUser.split(",");
-            } 
+            var checkUser = localStorage.key(i);
 
-            if ( quizUserDetails == userOldScore[0] && score <= userOldScore[1] ) {
-                console.log("Score is lower than previous score for same user");
-                localStorage.setItem(quizUserDetails, value);
-                window.alert("Your recent score of " + score + " is less than a previous entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.");
-                break; 
-            }
-            
-            else if (enterInitialsTextArea.value == "") {
-                console.log("Empty entry");
-                window.alert("Please enter initials");
-                break;
-            }
-            
-            else if (quizUserDetails == userOldScore[0] && score > userOldScore[1]) {
-                console.log("Sixth IF Statement Entered");
-                localStorage.setItem(quizUserDetails, value);
-                window.alert("New high score of " + score + " has been submitted!.\nYour previous score was " + userOldScore[1]);
-                break; 
-            }
-            
-            else if (quizUserDetails == userOldScore[0] && score < userOldScore[1]) {
-                console.log("Seventh IF Statement Entered");
-                localStorage.setItem(quizUserDetails, value);
-                window.alert("Your previous code of " + userOldScore[1] + " was higher. Entry will not be added.");
-                break; 
-
-            }
-            
-            else {
-                console.log("Eigth IF Statement Entered");
-                localStorage.setItem(quizUserDetails, value);
-                window.alert("Your score of " + score + " has been submitted!")
-                break;
+            if (checkUser == enterInitialsTextArea.value) {
+                var oldScore = localStorage.getItem(enterInitialsTextArea.value);
+                if (enterInitialsTextArea.value == checkUser && score <= oldScore) {
+                    console.log("Score is lower than previous score for same user");
+                    window.alert("Your recent score of " + score + " is less than a previous entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.");
+                    break; 
+                }
+                
+                else if (enterInitialsTextArea.value == checkUser && score > oldScore) {
+                    console.log("Score is better than previous score for same user");
+                    localStorage.setItem(enterInitialsTextArea.value, score);
+                    window.alert("New high score of " + score + " has been submitted!.\nYour previous score was " + oldScore);
+                    break; 
+                }
             }
         }
 
+        if (checkUser != enterInitialsTextArea.value){
+            console.log("User " + checkUser + " does not exist");
+            localStorage.setItem(enterInitialsTextArea.value, score);
+            window.alert("Your score of " + score + " has been submitted!");
+        }
+            
         showScores();
-    }
-
-    else {
-        console.log("Error detected");
-        window.alert("Invalid entry. Try again");
-        enterInitialsTextArea.value = "";
     }
 });
 
@@ -206,18 +173,19 @@ function errorChecking (){
     function containsNumbers(str) {
         const numberCheck = /[0-9]/;
         return numberCheck.test(str);
-    }     
-      console.log("First Test");
-      console.log(containsSpecialChars(enterInitialsTextArea.value));
-      console.log("Second Test");
-      console.log(containsNumbers(enterInitialsTextArea.value));
-      if (containsSpecialChars(enterInitialsTextArea.value)) {
-        errorDetected = true;
-      }
+    }    
 
-      if (containsNumbers(enterInitialsTextArea.value)) {
+    if (containsSpecialChars(enterInitialsTextArea.value)) {
         errorDetected = true;
-      }
+    }
+
+    if (containsNumbers(enterInitialsTextArea.value)) {
+        errorDetected = true;
+    }
+
+    if (enterInitialsTextArea.value == "") {
+        errorDetected = true;
+    }
 }
 
 function showScores () {
@@ -225,24 +193,24 @@ function showScores () {
     document.getElementById("questionsDisplay").style.gridRow = 2;
     document.getElementById("questionsDisplay").style.placeSelf = "start";
     document.getElementById("questionsDisplay").style.fontSize = "xx-large";
-    questionsDisplay.textContent = "High scores";
+    finalScoreDisplay.style.display = "none";
+    enterInitials.style.display = "none";
     goBack.style.display = "";
     clearHighscores.style.display = "";
+    questionsDisplay.textContent = "High scores";
     goBack.textContent = "Go back";
     clearHighscores.textContent = "Clear high scores";
+    if (localStorage.length == 0) {
+        console.log("There are no users");
+    }
 
-    for (var i = 0; i < localStorage.length; i++) {
-        var userOldScore = [];
-        quizUsers = localStorage.getItem(localStorage.key(i));
-        substringTest = quizUsers.substring(0, 4);
-        if (substringTest == "quiz") {
-            console.log("Entered If Statement");
-            userOldScore = quizUsers.split(",");
-            var userName = userOldScore[0];
-            highScore += (i + 1) + ". " + userName.substring(4) + " - " + userOldScore[1];
+    else {
+        for (var i = 0; i < localStorage.length; i++) {
+            quizUser = localStorage.key(i);
+            userScore = localStorage.getItem(quizUser);
             var listItem = document.createElement('li');
-            listItem.textContent = highScore;
-            repoList.appendChild(listItem);
+            listItem.textContent = (i + 1) + ". " + quizUser + " - " + userScore;
+            createList.appendChild(listItem);
         }
     }
 }
