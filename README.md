@@ -3,13 +3,31 @@ A website that gives a user a quiz and scores them against a timer
 
 ![This is a screenshot showing what you would see upon first visiting the website.](./assets/images/loadscreen.png)
 
-![This is a screenshot showing what happens after you click the save icon with no text entry in the time block.](./assets/images/nothingwasadded.png)
+![This is a screenshot showing what happens after you click the start quiz button.](./assets/images/startquiz.png)
 
-![This is a screenshot showing what happens after you click the save icon with a text entry in the time block.](./assets/images/addevent.png)
+![This is a screenshot showing what happens after you click the wrong answer.](./assets/images/wronganswer.png)
 
-![This is a screenshot showing what happens after you click the save icon with the same text entry in the time block as in the localstorage.](./assets/images/eventexists.png)
+![This is a screenshot showing what happens after you click the right answer.](./assets/images/rightanswer.png)
 
-![This is a screenshot showing what happens after you click the save icon with a different text entry in the time block as in the localstorage.](./assets/images/eventupdated.png)
+![This is a screenshot showing what happens after you answered all the questions before the timer runs out.](./assets/images/answeredall.png)
+
+![This is a screenshot showing what happens after the timer runs out before you answered all the questions.](./assets/images/timerranout.png)
+
+![This is a screenshot showing what happens after you put your mouse over a button.](./assets/images/mousehover.png)
+
+![This is a screenshot showing what happens after you enter your initials.](./assets/images/initialsentry.png)
+
+![This is a screenshot showing what happens after you click submit score.](./assets/images/newscoreadded.png)
+
+![This is a screenshot showing what happens after you click okay on the score being submitted.](./assets/images/displayscoeshtml.png)
+
+![This is a screenshot showing what happens after you click the go back button.](./assets/images/goback.png)
+
+![This is a screenshot showing what happens after you click the view highscores button.](./assets/images/viewscorewindow.png)
+
+![This is a screenshot showing what happens after a couple of users have taken the quiz.](./assets/images/multipleusersdisplayed.png)
+
+![This is a screenshot showing what happens after you click the clear scores button.](./assets/images/clearscores.png)
 
 ## Viewed the requirements; Started implementing functionality and design aspects
 

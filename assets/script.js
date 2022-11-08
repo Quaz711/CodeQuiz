@@ -86,9 +86,9 @@ viewHighscores.addEventListener("click", function() {
             userScore = localStorage.getItem(quizUser); //puts current user's score in local storage into a variable
             highScoresDisplay += (i + 1) + ". " + quizUser + " - " + userScore + "\n"; //combines the user and their score and puts them into a variable to be displayed
         }
-    }
 
-    window.alert(highScoresDisplay); //displays a window alert showing users and their scores from the localstorage
+        window.alert(highScoresDisplay); //displays a window alert showing users and their scores from the localstorage
+    }
 });
 //function that enters if user clicks to clear highscores
 clearHighscores.addEventListener("click", function() {
