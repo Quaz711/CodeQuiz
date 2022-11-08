@@ -1,47 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!--sets default language-->
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-    <link rel="stylesheet" href="./assets/style.css">
+    <meta charset="UTF-8"> <!--sets character set-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--initializes the scale size-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia"> <!--links to google fonts-->
+    <link rel="stylesheet" href="./assets/style.css"> <!--links to the javascript-->
     <title>Code Quiz</title>
 </head>
 <body>
     <header>
         <div>
-            <button class="btnHeader" id="viewHighscores">View high scores</button>
+            <button class="btnHeader" id="viewHighscores">View high scores</button> <!--creates a button that shows the highscores-->
         </div>
         <div>
-            <p>Time Remaining: <span id="timeRemaining">xxx</span></p>
+            <p>Time Remaining: <span id="timeRemaining">xxx</span></p> <!--creates a paragraph line displaying time remaining-->
         </div>
     </header>
 
     <main>
-        <div id="grid">
-            <p id="labelDisplay1">Coding Quiz Challenge</p>
-            <p id="labelDisplay2">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-            <p id="questionsDisplay"></p>
-            <ul class="highScores"></ul>
-            <p id="finalScoreDisplay"></p>
-            <p id="enterInitials"></p>
-            <textarea id="enterInitialsTextArea" maxlength="3"></textarea>
-            <button class="btn" id="startQuiz">Start Quiz</button>
-            <button class="btn" id="answer1"></button>
-            <button class="btn" id="answer2"></button>
-            <button class="btn" id="answer3"></button>
-            <button class="btn" id="answer4"></button>
-            <button class="btn" id="submitScore"></button>
-            <button class="btn" id="clearHighscores"></button>
-            <button class="btn" id="goBack"></button>
+        <div id="grid"> <!--creates a grid conatiner-->
+            <p id="labelDisplay1">Coding Quiz Challenge</p> <!--creates a paragraph line-->
+            <p id="labelDisplay2">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p> <!--creates a paragraph line-->
+            <p id="questionsDisplay"></p> <!--creates a paragraph line-->
+            <ul class="highScores"></ul> <!--creates a unordered list-->
+            <p id="finalScoreDisplay"></p> <!--creates a paragraph line-->
+            <p id="enterInitials"></p> <!--creates a paragraph line-->
+            <textarea id="enterInitialsTextArea" maxlength="3"></textarea> <!--creates a text area for user input for 3 letters-->
+            <button class="btn" id="startQuiz">Start Quiz</button> <!--creates a button-->
+            <button class="btn" id="answer1"></button> <!--creates a button-->
+            <button class="btn" id="answer2"></button> <!--creates a button-->
+            <button class="btn" id="answer3"></button> <!--creates a button-->
+            <button class="btn" id="answer4"></button> <!--creates a button-->
+            <button class="btn" id="submitScore"></button> <!--creates a button-->
+            <button class="btn" id="clearHighscores"></button> <!--creates a button-->
+            <button class="btn" id="goBack"></button> <!--creates a button-->
         </div>
 
-        <div id="correctORwrongGrid">
-            <p id=correctORwrong></p>
+        <div id="correctORwrongGrid"> <!--creates a grid copntainer-->
+            <p id=correctORwrong></p> <!--creates a paragraph line-->
         </div>
     </main>
     
-    <script src="./assets/script.js"></script>
+    <script src="./assets/script.js"></script> <!--links to the javascript-->
 </body>
 </html>

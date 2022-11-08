@@ -1,10 +1,10 @@
-* {
+* { /*default styles for page*/
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-header {
+header { /*style for the header elements*/
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -18,12 +18,12 @@ header {
     font-family: "Sofia", sans-serif;
 }
 
-body {
+body { /*style for the body elements*/
     font-family: "Sofia", sans-serif;
     background-color: white;
 }
 
-main {
+main { /*style for the main elements*/
     margin-left: 25%;
     margin-right: 25%;
     display: flex;
@@ -34,7 +34,7 @@ main {
     font-family: "Sofia", sans-serif;
 }
 
-ul {
+ul { /*style for the unordered list elements*/
     list-style: none;
     grid-column: 1 / span 1;
     grid-row: 3/ span 1;
@@ -42,7 +42,7 @@ ul {
     font-size: 20px;
 }
 
-.btn {
+.btn { /*style for the button elements*/
     border-radius: 12px;
     border: 0;
     outline: 0;
@@ -51,7 +51,7 @@ ul {
     font-family: "Sofia", sans-serif;
 }
 
-.btnHeader {
+.btnHeader {  /*style for the button header elements*/
     border-radius: 10px;
     font-size: 30px;
     background-color: white;
@@ -62,7 +62,7 @@ ul {
     font-family: "Sofia", sans-serif;
 }
 
-#grid {
+#grid { /*style for the grid elements*/
     display: grid;
     grid-template-columns: repeat(2, 1fr) 2fr 1fr;
     grid-template-rows: repeat(10, 1fr);
@@ -70,7 +70,7 @@ ul {
     font-family: "Sofia", sans-serif;
 }
 
-#labelDisplay1 {
+#labelDisplay1 { /*style for a paragraph element*/
     text-align: center;
     align-self: baseline;
     grid-column: 2 / span 2;
@@ -79,7 +79,7 @@ ul {
     font-size: 50px;
 }
 
-#labelDisplay2 {
+#labelDisplay2 { /*style for a paragraph element*/
     text-align: center;
     align-self: baseline;
     grid-column: 1 / span 4;
@@ -88,7 +88,7 @@ ul {
     font-size: 30px;
 }
 
-#questionsDisplay {
+#questionsDisplay { /*style for a paragraph element*/
     text-align: center;
     align-self: baseline;
     grid-column: 1 / span 8;
@@ -97,19 +97,19 @@ ul {
     font-size: 30px;
 }
 
-#finalScoreDisplay {
+#finalScoreDisplay { /*style for a paragraph element*/
     grid-column: 1 / span 2;
     grid-row: 6 / span 1;
     font-size: 20px;
 }
 
-#enterInitials {
+#enterInitials { /*style for a paragraph element*/
     grid-column: 1 / span 1;
     grid-row: 7 / span 1;
     font-size: 20px;
 }
 
-#enterInitialsTextArea {
+#enterInitialsTextArea { /*style for text area element*/
     grid-row: 7 / span 1;
     width: 200px;
     height: 40px;
@@ -118,7 +118,7 @@ ul {
     resize: none;
 }
 
-#goBack {
+#goBack { /*style for a button element*/
     grid-column: 1 / span 1;
     grid-row: 4 / span 1;
     padding: 5px 20px;
@@ -132,7 +132,7 @@ ul {
     font-family: "Sofia", sans-serif;
 }
 
-#clearHighscores {
+#clearHighscores { /*style for a button element*/
     grid-column: 2 / span 1;
     grid-row: 4 / span 1;
     padding: 5px 20px;
@@ -146,7 +146,7 @@ ul {
     font-family: "Sofia", sans-serif;
 }
 
-#submitScore {
+#submitScore { /*style for a button element*/
     grid-column: 3 / span 1;
     grid-row: 7 / span 1;
     padding: 5px 20px;
@@ -160,7 +160,7 @@ ul {
     font-family: "Sofia", sans-serif;
 }
 
-#startQuiz {
+#startQuiz { /*style for a button element*/
     grid-column: 2 / span 2;
     grid-row: 8 / span 1;
     padding: 10px 20px;
@@ -173,7 +173,7 @@ ul {
     font-family: "Sofia", sans-serif;
 }
 
-#answer1 {
+#answer1 { /*style for a button element*/
     grid-column: 1 / span 2;
     grid-row: 6 / span 1;
     padding: 10px 20px;
@@ -186,7 +186,7 @@ ul {
     margin-left: 25px;
 }
 
-#answer2 {
+#answer2 { /*style for a button element*/
     grid-column: 1 / span 2;
     grid-row: 7 / span 1;
     padding: 10px 20px;
@@ -199,7 +199,7 @@ ul {
     margin-left: 25px;
 }
 
-#answer3{
+#answer3 { /*style for a button element*/
     grid-column: 1 / span 2;
     grid-row: 8 / span 1;
     padding: 10px 20px;
@@ -212,7 +212,7 @@ ul {
     margin-left: 25px;
 }
 
-#answer4 {
+#answer4 { /*style for a button element*/
     grid-column: 1 / span 2;
     grid-row: 9 / span 1;
     padding: 10px 20px;
@@ -225,50 +225,50 @@ ul {
     margin-left: 25px;
 }
 
-.btnHeader:hover {
+.btnHeader:hover { /*style for hovering over a button element*/
     background-color:rgb(13, 175, 224);
 }
 
-#startQuiz:hover {
+#startQuiz:hover { /*style for hovering over a button element*/
     background-color: rgb(13, 175, 224);
 }
 
-#answer1:hover {
+#answer1:hover { /*style for hovering over a button element*/
     background-color: rgb(13, 175, 224);
 }
 
-#answer2:hover {
+#answer2:hover { /*style for hovering over a button element*/
     background-color: rgb(13, 175, 224);
 }
 
-#answer3:hover {
+#answer3:hover { /*style for hovering over a button element*/
     background-color: rgb(13, 175, 224);
 }
 
-#answer4:hover {
+#answer4:hover { /*style for hovering over a button element*/
     background-color: rgb(13, 175, 224);
 }
 
-#submitScore:hover {
+#submitScore:hover { /*style for hovering over a button element*/
     background-color: rgb(13, 175, 224);
 }
 
-#goBack:hover {
+#goBack:hover { /*style for hovering over a button element*/
     background-color: rgb(13, 175, 224);
 }
 
-#clearHighscores:hover {
+#clearHighscores:hover { /*style for hovering over a button element*/
     background-color: rgb(13, 175, 224);
 }
 
-#correctORwrong {
+#correctORwrong { /*style for a paragraph element*/
     text-align: left;
     grid-column: 1 / span 4;
     grid-row: 1 / span 2;
     font-size: 20px;
 }
 
-#correctORwrongGrid {
+#correctORwrongGrid { /*style for the grid elements*/
     display: grid;
     grid-template-columns: 4fr;
     grid-template-rows: repeat(2, 1fr);
@@ -276,7 +276,7 @@ ul {
     font-family: "Sofia", sans-serif;
 }
 
-@media screen and (max-width: 1183px) {
+@media screen and (max-width: 1183px) { /*adjust elements for a different screen size*/
     main {
         margin-left: 5%;
         margin-right: 5%;
@@ -321,7 +321,7 @@ ul {
     }
 }
 
-@media screen and  (max-width: 504px) {
+@media screen and  (max-width: 504px) { /*adjust elements for a different screen size*/
     main {
         margin-left: 5%;
         margin-right: 5%;
